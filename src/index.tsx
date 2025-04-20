@@ -1,0 +1,22 @@
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import { Providers } from "./providers";
+import GlobalStyles from "./styles";
+import Routes from "./routes";
+
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <Providers>
+      <BrowserRouter
+        future={{
+          v7_startTransition: true,
+          v7_relativeSplatPath: true,
+        }}
+      >
+        <GlobalStyles />
+        <Routes />
+      </BrowserRouter>
+    </Providers>
+  </StrictMode>
+);
