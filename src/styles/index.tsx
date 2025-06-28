@@ -13,13 +13,10 @@ export default createGlobalStyle`
   }
 
   body {
-    background: ${(props) => props.theme["neutral-100"]};
+    background-color: ${(props) => props.theme["neutral-100"]};
     color: ${(props) => props.theme["neutral-900"]};
     --webkit-font-smoothing: antialiased;
     text-rendering: optimizeSpeed;
-
-    height: 100vh;
-    width: 100%;
   }
 
   div#root {
@@ -29,9 +26,9 @@ export default createGlobalStyle`
     height: 100vh;
   }
 
-  body, div#root , input, button, textarea {
-    font-family: "Parisienne", cursive;
-    font-weight: 400;
+  div#root , input, button, textarea {
+    font-family: "Cinzel", serif;
+    font-weight: 500;
     font-style: normal;
     font-size: 16px;
 
@@ -60,5 +57,7 @@ export default createGlobalStyle`
     font-size: 32px;
   }
 
-
+  h4 {
+    font-size: 24px;
+  }
 `;

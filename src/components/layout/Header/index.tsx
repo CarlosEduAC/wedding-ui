@@ -1,19 +1,31 @@
-import { FaBars } from "react-icons/fa";
-import { Container, LogoImage } from "./styles";
-import logo from "@/assets/logo.png";
+import { Container } from "./styles";
+// import flower from "@/assets/bflower.png";
 
 function Header() {
+  // const { theme, toggleTheme } = useTheme();
+  // const petals = Array.from({ length: 30 }, () => ({
+  //   id: Math.random(),
+  //   left: Math.random() * 100,
+  //   delay: Math.random() * 10,
+  //   duration: 3 + Math.random() * 5,
+  //   color: colors[Math.floor(Math.random() * colors.length)],
+  // }));
+
   return (
     <Container>
-      {/* <Link to="/">Início</Link>
-      <Link to="/our-story">Nossa História</Link> */}
-      <LogoImage src={logo} />
+      {/* <PetalContainer>
+        {petals.map((petal) => (
+          <Petal
+            key={petal.id}
+            left={petal.left}
+            delay={petal.delay}
+            duration={petal.duration}
+            color={petal.color}
+          />
+        ))}
+      </PetalContainer> */}
 
-      <FaBars size={32} />
-
-      {/* <Link to="/ceremony">Cerimônia</Link>
-      {/* <Link to="/pre-wedding">Fotos</Link>
-      <Link to="/guestbook">Lista de Presentes</Link> */}
+      {/* <Image src={flower} /> */}
     </Container>
   );
 }

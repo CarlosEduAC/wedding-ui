@@ -1,10 +1,12 @@
 export const darkTheme = {
-  "neutral-100": "#131d2c",
-  "neutral-900": "#dadfe9",
+  "neutral-100": "#010406",
+  "neutral-300": "#d0e6fa",
+  "neutral-700": "#e2f0fc",
+  "neutral-900": "#f3f9fe",
 
-  "primary-100": "#131d2c",
+  "primary-100": "#07233b",
   "primary-300": "#163455",
   "primary-500": "#0f4c81",
-  "primary-700": "#6c83aa",
-  "primary-900": "#b5bfd4",
+  "primary-700": "#218ae5",
+  "primary-900": "#d0e6fa",
 };

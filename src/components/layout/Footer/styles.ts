@@ -26,5 +26,5 @@ export const SocialMediaContainer = styled.div`
 `;
 
 export const Copyright = styled.p`
-  font-size: 0.6rem;
+  font-size: 12px;
 `;

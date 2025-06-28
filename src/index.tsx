@@ -8,13 +8,13 @@ import Routes from "./routes";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Providers>
+      <GlobalStyles />
       <BrowserRouter
         future={{
           v7_startTransition: true,
           v7_relativeSplatPath: true,
         }}
       >
-        <GlobalStyles />
         <Routes />
       </BrowserRouter>
     </Providers>
