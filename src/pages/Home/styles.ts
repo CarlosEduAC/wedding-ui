@@ -1,9 +1,25 @@
 import styled from "styled-components";
 
+export const Background = styled.div`
+  width: 100%;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("/background2.png");
+    background-size: 100%;
+    z-index: -1;
+    opacity: 0.2;
+  }
+`;
+
 export const Container = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 1;
 
   flex: 1;
 
@@ -30,13 +46,19 @@ export const Title = styled.div`
   h1 + p {
     margin: 1rem 0 1rem 0;
   }
+
+  h2 {
+    font-family: "Parisienne", cursive;
+    font-size: 48px;
+    margin: 48px 0 8px 0;
+  }
 `;
 
-export const Subtitle = styled.p<{ primary?: boolean }>`
+export const Subtitle = styled.p<{ $primary?: boolean }>`
   text-align: center;
-  margin-top: ${({ primary }) => (primary ? "12px" : "8px")};
-  color: ${({ primary, theme }) =>
-    primary ? theme["primary-500"] : theme["primary-900"]};
+  margin-top: ${({ $primary }) => ($primary ? "12px" : "8px")};
+  color: ${({ $primary, theme }) =>
+    $primary ? theme["primary-500"] : theme["primary-900"]};
 `;
 
 export const Caption = styled.p`
@@ -83,7 +105,7 @@ export const ConfirmationButton = styled.button`
   justify-content: center;
 
   margin: 48px 0 0 0;
-  padding: 24px 64px 24px 64px;
+  padding: 24px 120px 24px 120px;
   cursor: pointer;
   background-color: ${({ theme }) => theme["primary-700"]};
   border: none;
@@ -92,7 +114,7 @@ export const ConfirmationButton = styled.button`
 
   &:hover {
     background-color: ${({ theme }) => theme["primary-500"]};
-    color: ${({ theme }) => theme["neutral-100"]};
+    color: ${({ theme }) => theme["neutral-200"]};
   }
 `;
 
@@ -100,7 +122,7 @@ export const Message = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: 156px 0 0 0;
+  margin: 48px 0 0 0;
   padding: 32px;
   border-radius: 16px;
 
@@ -113,31 +135,136 @@ export const Message = styled.div`
   }
 `;
 
-export const Images = styled.div<{ src: string }>`
-  /* width: 50%;
-  border-radius: 200px 200px 0 0;
-  margin: 1.5rem 0; */
+export const CardContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+`;
 
-  position: relative;
-  width: 100px;
-  height: 90px;
+export const Card = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  border-radius: 16px;
+  width: 560px;
 
-  &:before,
-  &:after {
-    position: absolute;
-    content: "";
-    left: 50px;
-    top: 0;
-    width: 50px;
-    height: 80px;
-    background-image: url(${(props) => props.src});
-    border-radius: 50px 50px 0 0;
-    transform: rotate(-45deg);
-    transform-origin: 0 100%;
+  background-color: ${({ theme }) => theme["neutral-200"]};
+
+  div {
+    display: flex;
+    text-align: center;
+    /* justify-content: center; */
+
+    p {
+      margin: 0 0 8px 0;
+    }
+
+    p + p {
+      margin: 0 0 8px 4px;
+    }
   }
-  &:after {
-    left: 0;
-    transform: rotate(45deg);
-    transform-origin: 100% 100%;
+
+  @media screen and (max-width: 640px) {
+    width: 100%;
+  }
+`;
+
+export const ConfirmationForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 8px 0 0 0;
+`;
+
+export const ConfirmationFormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  gap: 16px;
+  margin: 0 0 46px 0;
+`;
+
+export const ConfirmationFormInputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-size: 12px;
+    font-weight: 700;
+    text-align: left;
+    margin: 0 0 4px 0;
+  }
+
+  &:focus,
+  &:hover {
+    label {
+      font-size: 13px;
+    }
+
+    input {
+      outline: none;
+      box-shadow: inset 0 0 0 2px ${({ theme }) => theme["primary-100"]};
+    }
+  }
+`;
+
+export const ConfirmationFormInput = styled.input`
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: ${({ theme }) => theme["neutral-300"]};
+  color: ${({ theme }) => theme["primary-900"]};
+
+  &:focus,
+  &:hover {
+    outline: none;
+    box-shadow: inset 0 0 0 2px ${({ theme }) => theme["primary-100"]};
+  }
+`;
+
+export const ConfirmationFormAutoComplete = styled.input`
+  width: 100%;
+  padding: 12px 16px 12px 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: ${({ theme }) => theme["neutral-300"]};
+  color: ${({ theme }) => theme["primary-900"]};
+
+  &:focus {
+    outline: none;
+    box-shadow: inset 0 0 0 2px ${({ theme }) => theme["primary-100"]};
+  }
+`;
+
+export const ConfirmationFormButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+
+  margin: 0 0 0 16px;
+  padding: 12px 24px;
+  cursor: pointer;
+  background-color: ${({ theme }) => theme["primary-500"]};
+  border: none;
+  border-radius: 8px;
+  color: ${({ theme }) => theme["primary-100"]};
+
+  &:hover {
+    background-color: ${({ theme }) => theme["primary-500"]};
+    color: ${({ theme }) => theme["neutral-200"]};
+  }
+
+  &:disabled {
+    background-color: ${({ theme }) => theme["neutral-800"]};
+    color: ${({ theme }) => theme["neutral-200"]};
+    cursor: not-allowed;
   }
 `;

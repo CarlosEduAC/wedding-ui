@@ -1,7 +1,9 @@
 export const lightTheme = {
-  "neutral-100": "#f3f9fe",
+  "neutral-100": "#ffffff",
+  "neutral-200": "#f3f9fe",
   "neutral-300": "#e2f0fc",
   "neutral-700": "#d0e6fa",
+  "neutral-800": "#a9a9a9",
   "neutral-900": "#010406",
 
   "primary-100": "#d0e6fa",

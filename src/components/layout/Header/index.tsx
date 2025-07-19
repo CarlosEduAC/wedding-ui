@@ -1,33 +1,31 @@
-import { Container } from "./styles";
-// import flower from "@/assets/bflower.png";
+import React, { InputHTMLAttributes } from "react";
+import { Link } from "react-router-dom";
+import { FaSearch, FaShoppingCart } from "react-icons/fa";
+import { useWindow } from "@/hooks/useWindowDimension";
+import { Container, CartContainer } from "./styles";
+import { Search } from "@/components/ui/Search";
 
-function Header() {
-  // const { theme, toggleTheme } = useTheme();
-  // const petals = Array.from({ length: 30 }, () => ({
-  //   id: Math.random(),
-  //   left: Math.random() * 100,
-  //   delay: Math.random() * 10,
-  //   duration: 3 + Math.random() * 5,
-  //   color: colors[Math.floor(Math.random() * colors.length)],
-  // }));
+interface HeaderProps extends InputHTMLAttributes<HTMLInputElement> {
+  LogoImg: string;
+}
+
+const Header: React.FC<HeaderProps> = ({ LogoImg, ...rest }) => {
+  const { windowWidth } = useWindow();
 
   return (
-    <Container>
-      {/* <PetalContainer>
-        {petals.map((petal) => (
-          <Petal
-            key={petal.id}
-            left={petal.left}
-            delay={petal.delay}
-            duration={petal.duration}
-            color={petal.color}
-          />
-        ))}
-      </PetalContainer> */}
+    <Container $isMobile={windowWidth <= 490}>
+      <Link to="/">
+        <img src={LogoImg} alt="Polyana e Carlos Eduardo" />
+      </Link>
 
-      {/* <Image src={flower} /> */}
+      {windowWidth > 490 && <Search icon={FaSearch} {...rest} />}
+
+      <CartContainer>
+        Carrinho de Presentes
+        <FaShoppingCart />
+      </CartContainer>
     </Container>
   );
-}
+};
 
 export { Header };

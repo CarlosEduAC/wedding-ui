@@ -3,16 +3,16 @@ import {
   useState,
   useEffect,
   useCallback,
-  PropsWithChildren,
+  useMemo,
 } from "react";
-
+import { type ProvidersProps } from "@/models/Providers";
 import { type WindowDimensionContextData } from "@/models/WindowDimension";
 
 const WindowDimensionContext = createContext<WindowDimensionContextData>(
   {} as WindowDimensionContextData
 );
 
-const WindowDimensionProvider = ({ children }: PropsWithChildren) => {
+const WindowDimensionProvider = ({ children }: ProvidersProps) => {
   const getWindowWidth = useCallback((): number => {
     const { innerWidth } = window;
 
@@ -39,8 +39,13 @@ const WindowDimensionProvider = ({ children }: PropsWithChildren) => {
     return () => window.removeEventListener("resize", handleResize);
   }, [getWindowHeight, getWindowWidth]);
 
+  const contextValue = useMemo(
+    () => ({ windowWidth, windowHeight }),
+    [windowWidth, windowHeight]
+  );
+
   return (
-    <WindowDimensionContext.Provider value={{ windowWidth, windowHeight }}>
+    <WindowDimensionContext.Provider value={contextValue}>
       {children}
     </WindowDimensionContext.Provider>
   );

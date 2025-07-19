@@ -13,7 +13,7 @@ export default createGlobalStyle`
   }
 
   body {
-    background-color: ${(props) => props.theme["neutral-100"]};
+    background-color: ${(props) => props.theme["neutral-200"]};
     color: ${(props) => props.theme["neutral-900"]};
     --webkit-font-smoothing: antialiased;
     text-rendering: optimizeSpeed;
