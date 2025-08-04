@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Footer, Modal } from "@/components/layout";
+import { AutoComplete } from "@/components/ui/AutoComplete";
 import {
   Background,
   Container,
@@ -16,7 +17,6 @@ import {
   ConfirmationFormContainer,
   ConfirmationFormInputContainer,
   ConfirmationFormInput,
-  ConfirmationFormAutoComplete,
   ConfirmationFormButton,
 } from "./styles";
 
@@ -184,30 +184,24 @@ function Home() {
         <ConfirmationForm>
           <ConfirmationFormContainer>
             <ConfirmationFormInputContainer>
-              <label htmlFor="name">Nome</label>
-              <ConfirmationFormAutoComplete
-                name=""
-                type="text"
-                placeholder="Informe o seu nome"
-                required
-              />
-            </ConfirmationFormInputContainer>
-            <ConfirmationFormInputContainer>
-              <label htmlFor="email">Email</label>
-              <ConfirmationFormInput
-                name="email"
-                type="email"
-                placeholder="seuemail@email.com"
-                required
-              />
-            </ConfirmationFormInputContainer>
-            <ConfirmationFormInputContainer>
               <label htmlFor="phone">WhatsApp</label>
               <ConfirmationFormInput
                 name="phone"
                 type="tel"
                 placeholder="(99) 99999-9999"
                 required
+              />
+            </ConfirmationFormInputContainer>
+
+            <ConfirmationFormInputContainer>
+              <AutoComplete
+                options={[
+                  "Carlos Eduardo Alves Cardoso",
+                  "Polyana Pinheiro Cardoso",
+                  "Laura Salles Cardoso",
+                  "Marlene Alves Cardoso",
+                ]}
+                placeholder="Informe o nome do convidado"
               />
             </ConfirmationFormInputContainer>
           </ConfirmationFormContainer>

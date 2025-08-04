@@ -1,4 +1,5 @@
 import { Fragment, ReactNode } from "react";
+import { useWindow } from "@/hooks/useWindowDimension";
 import { Container, Content, Header, Body, Overlay } from "./styles";
 
 export interface ModalProps {
@@ -16,12 +17,14 @@ function Modal({
   subtitle,
   children,
 }: Readonly<ModalProps>) {
+  const { windowWidth } = useWindow();
+
   return (
     <Fragment>
       {active && (
         <Container>
           <Overlay onClick={() => hideModal()}></Overlay>
-          <Content>
+          <Content $isMobile={windowWidth <= 490}>
             <Header>
               {title && <h1>{title}</h1>}
               {subtitle && <h3>{subtitle}</h3>}

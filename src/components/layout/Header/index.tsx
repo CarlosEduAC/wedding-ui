@@ -1,15 +1,14 @@
-import React, { InputHTMLAttributes } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { FaSearch, FaShoppingCart } from "react-icons/fa";
+import { TiShoppingCart } from "react-icons/ti";
 import { useWindow } from "@/hooks/useWindowDimension";
-import { Container, CartContainer } from "./styles";
-import { Search } from "@/components/ui/Search";
+import { Container, CartContainer, Title } from "./styles";
 
-interface HeaderProps extends InputHTMLAttributes<HTMLInputElement> {
+interface HeaderProps {
   LogoImg: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ LogoImg, ...rest }) => {
+const Header: React.FC<HeaderProps> = ({ LogoImg }) => {
   const { windowWidth } = useWindow();
 
   return (
@@ -18,11 +17,11 @@ const Header: React.FC<HeaderProps> = ({ LogoImg, ...rest }) => {
         <img src={LogoImg} alt="Polyana e Carlos Eduardo" />
       </Link>
 
-      {windowWidth > 490 && <Search icon={FaSearch} {...rest} />}
+      <Title>Lista de Presentes</Title>
 
       <CartContainer>
-        Carrinho de Presentes
-        <FaShoppingCart />
+        <TiShoppingCart size={46} />
+        Carrinho
       </CartContainer>
     </Container>
   );
