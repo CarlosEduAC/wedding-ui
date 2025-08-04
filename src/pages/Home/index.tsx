@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Footer, Modal } from "@/components/layout";
+import { Gallery } from "@/components/ui/Gallery";
 import { AutoComplete } from "@/components/ui/AutoComplete";
 import {
   Background,
@@ -18,6 +19,7 @@ import {
   ConfirmationFormInputContainer,
   ConfirmationFormInput,
   ConfirmationFormButton,
+  PreWeddingContainer,
 } from "./styles";
 
 function Home() {
@@ -110,6 +112,26 @@ function Home() {
         </Message>
 
         <Title>
+          <h2>Pré Wedding</h2>
+        </Title>
+
+        <PreWeddingContainer>
+          <Gallery
+            photos={[
+              "/image.jpg",
+              "/image2.jpeg",
+              "/image.jpg",
+              "/image2.jpeg",
+              "/image.jpg",
+              "/image2.jpeg",
+              "/image.jpg",
+              "/image2.jpeg",
+              "/image.jpg",
+            ]}
+          />
+        </PreWeddingContainer>
+
+        <Title>
           <h2>Informações do Evento</h2>
         </Title>
 
@@ -133,10 +155,7 @@ function Home() {
             </div>
 
             <iframe
-              title="Mapa do local"
-              width="100%"
-              height="300"
-              style={{ border: 0, borderRadius: "12px" }}
+              title="Igreja"
               loading="lazy"
               src="https://www.openstreetmap.org/export/embed.html?bbox=-41.929769%2C-22.500405%2C-41.929769%2C-22.500405&layer=mapnik&marker=-22.500405%2C-41.929769"
             ></iframe>
@@ -158,19 +177,12 @@ function Home() {
             </div>
 
             <iframe
-              title="Mapa do local"
-              width="100%"
-              height="300"
-              style={{ border: 0, borderRadius: "12px" }}
+              title="Lux Party"
               loading="lazy"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=-42.0287256%2C-22.4765806%2C-42.0287256%2C-22.4765806&layer=mapnik&marker=-22.4765806%2C-42.0287256"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-42.0187256%2C-22.4765806%2C-42.0657256%2C-22.4665806&amp;layer=mapnik&marker=-22.4765806%2C-42.0287256"
             ></iframe>
           </Card>
         </CardContainer>
-
-        <Title>
-          <h2>Pré Wedding</h2>
-        </Title>
       </Container>
 
       <Footer />
