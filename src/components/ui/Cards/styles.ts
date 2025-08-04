@@ -6,6 +6,6 @@ export const Container = styled.section`
   align-items: center;
   gap: 32px;
 
-  width: 50%;
-  margin: 64px 0 0 0;
+  width: 70%;
+  margin: 32px 0 64px 0;
 `;

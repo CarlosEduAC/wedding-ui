@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  width: 720px;
+  width: 480px;
   padding: 8px 16px 8px 16px;
   border-radius: 8px;
   border: 1px solid ${(props) => props.theme["primary-500"]};
@@ -24,6 +24,7 @@ export const Container = styled.div`
     width: 100%;
     color: ${(props) => props.theme["primary-500"]};
     padding: 0 8px 0 0;
+    font-size: 14px;
 
     &::placeholder {
       color: #a8a8b3;

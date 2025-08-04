@@ -156,7 +156,6 @@ export const Card = styled.div`
   div {
     display: flex;
     text-align: center;
-    /* justify-content: center; */
 
     p {
       margin: 0 0 8px 0;
@@ -200,18 +199,6 @@ export const ConfirmationFormInputContainer = styled.div`
     text-align: left;
     margin: 0 0 4px 0;
   }
-
-  &:focus,
-  &:hover {
-    label {
-      font-size: 13px;
-    }
-
-    input {
-      outline: none;
-      box-shadow: inset 0 0 0 2px ${({ theme }) => theme["primary-100"]};
-    }
-  }
 `;
 
 export const ConfirmationFormInput = styled.input`
@@ -229,28 +216,14 @@ export const ConfirmationFormInput = styled.input`
   }
 `;
 
-export const ConfirmationFormAutoComplete = styled.input`
-  width: 100%;
-  padding: 12px 16px 12px 16px;
-  border: none;
-  border-radius: 8px;
-  background-color: ${({ theme }) => theme["neutral-300"]};
-  color: ${({ theme }) => theme["primary-900"]};
-
-  &:focus {
-    outline: none;
-    box-shadow: inset 0 0 0 2px ${({ theme }) => theme["primary-100"]};
-  }
-`;
-
 export const ConfirmationFormButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50%;
+  width: 70%;
 
-  margin: 0 0 0 16px;
   padding: 12px 24px;
+  margin: 32px 0 0 0;
   cursor: pointer;
   background-color: ${({ theme }) => theme["primary-500"]};
   border: none;

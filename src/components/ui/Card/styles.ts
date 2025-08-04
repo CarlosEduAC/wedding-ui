@@ -5,7 +5,7 @@ export const Figure = styled.figure`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
+  background-color: transparent;
   border: 1px solid ${(props) => props.theme["primary-700"]};
   border-radius: 8px;
   padding: 24px 16px 24px 16px;
@@ -18,7 +18,7 @@ export const Figure = styled.figure`
 `;
 
 export const FigureImage = styled.img`
-  width: 120px;
+  width: 132px;
   margin: 0 0 8px 0;
 `;
 

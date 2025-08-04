@@ -53,11 +53,11 @@ export const Header = styled.header`
   }
 `;
 
-export const Content = styled.div`
+export const Content = styled.div<{ $isMobile: boolean }>`
   display: flex;
   flex-direction: column;
   text-align: center;
-  width: 50vw;
+  width: ${(props) => props.$isMobile ? "100vw" : "50vw"};
   background-color: ${(props) => props.theme["neutral-200"]};
   border-radius: 8px;
   z-index: 1;

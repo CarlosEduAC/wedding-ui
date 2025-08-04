@@ -1,25 +1,28 @@
 import Cards from "@/components/ui/Cards";
 import { Header, Footer } from "@/components/layout";
 import { Background } from "@/pages/Home/styles";
-import { Container, Title } from "./styles";
+import { Search } from "@/components/ui/Search";
+import { SortBy } from "@/components/ui/SortBy";
+import { FaSearch } from "react-icons/fa";
+import { Container, SubTitle, Filters } from "./styles";
 import LogoImg from "@/assets/logo.png";
 
 function GiftList() {
   return (
     <Background>
-      <Header
-        LogoImg={LogoImg}
-        name="search"
-        // value={item}
-        // onChange={(e) => setItemName(e.target.value)}
-      />
+      <Header LogoImg={LogoImg} />
 
       <Container>
-        <Title>
-          <h1>Lista de Presentes</h1>
+        <SubTitle>
           <p>Dê um presente para Polyana & Carlos Eduardo.</p>
           <p>Torne esse dia ainda mais especial!</p>
-        </Title>
+        </SubTitle>
+
+        <Filters>
+          <p>534 produtos encontrados</p>
+          <Search icon={FaSearch} name="search" />
+          <SortBy />
+        </Filters>
 
         <Cards
           itemList={[
