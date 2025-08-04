@@ -55,7 +55,7 @@ export const Title = styled.div`
 `;
 
 export const Subtitle = styled.p<{ $primary?: boolean }>`
-  text-align: center;
+  text-align: left;
   margin-top: ${({ $primary }) => ($primary ? "12px" : "8px")};
   color: ${({ $primary, theme }) =>
     $primary ? theme["primary-500"] : theme["primary-900"]};
@@ -142,6 +142,15 @@ export const CardContainer = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   gap: 16px;
+
+  margin: 0 0 64px 0;
+
+  iframe {
+    width: 100%;
+    height: 360px;
+    border: none;
+    border-radius: 8px;
+  }
 `;
 
 export const Card = styled.div`
@@ -149,7 +158,7 @@ export const Card = styled.div`
   flex-direction: column;
   padding: 32px;
   border-radius: 16px;
-  width: 560px;
+  width: 625px;
 
   background-color: ${({ theme }) => theme["neutral-200"]};
 
@@ -241,3 +250,5 @@ export const ConfirmationFormButton = styled.button`
     cursor: not-allowed;
   }
 `;
+
+export const PreWeddingContainer = styled.div``;
