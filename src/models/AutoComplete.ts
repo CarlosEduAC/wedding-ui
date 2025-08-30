@@ -1,7 +1,9 @@
+import { Invited } from '@/models/Invited';
+
 type AutocompleteProps = {
   id?: string;
-  options: string[];
-  onChange?: (selected: string[]) => void;
+  options: Invited[];
+  onChange: (selected: Invited[]) => void;
   placeholder?: string;
 };
 

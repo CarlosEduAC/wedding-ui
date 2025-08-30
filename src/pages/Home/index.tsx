@@ -21,8 +21,15 @@ import {
   ConfirmationFormButton,
   PreWeddingContainer,
 } from "./styles";
+import { Invited } from "@/models/Invited";
+
+import api from "@/services/wedding-api";
 
 function Home() {
+  const [invited, setInvited] = useState<Invited[]>([]);
+  const [confirmedInviteds, setConfirmedInviteds] = useState<Invited[]>([]);
+  const [confirmedPhoneInvited, setConfirmedPhoneInvited] =
+    useState<string>("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const calculateTimeLeft = useCallback(() => {
     const eventTime = new Date("2025-10-18T15:00:00Z");
@@ -39,10 +46,22 @@ function Home() {
       seconds: Math.floor((difference / 1000) % 60),
     };
   }, []);
+  const fetchInvitedGuests = useCallback(async () => {
+    try {
+      const response = await api.get("/inviteds");
+      setInvited(response.data.inviteds);
+    } catch (error) {
+      console.error("Error fetching invited guests:", error);
+    }
+  }, []);
 
   const [timeLeft, setTimeLeft] = useState<
     ReturnType<typeof calculateTimeLeft>
   >(calculateTimeLeft());
+
+  useEffect(() => {
+    fetchInvitedGuests();
+  }, [fetchInvitedGuests]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -54,6 +73,52 @@ function Home() {
 
   const changeModalStatus = () => {
     setModalIsOpen(!modalIsOpen);
+  };
+
+  const handleConfirmedInvitedPhone = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    let input = e.target.value.replace(/\D/g, "");
+
+    if (input.length > 0) {
+      input = "(" + input;
+    }
+    if (input.length > 3) {
+      input = input.slice(0, 3) + ") " + input.slice(3);
+    }
+    if (input.length > 10) {
+      input = input.slice(0, 10) + "-" + input.slice(10, 14);
+    }
+
+    setConfirmedPhoneInvited(input);
+  };
+
+  const handleConfirmedInviteds = (value: Invited[]) => {
+    setConfirmedInviteds(value);
+  };
+
+  const handleConfirmationSubmit = (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault();
+
+    const whatsapp = confirmedPhoneInvited.replace(/\D/g, "");
+
+    for (const confirmedInvited of confirmedInviteds) {
+      const data = {
+        id: confirmedInvited.id,
+        name: confirmedInvited.name,
+        whatsapp,
+        confirm: true,
+      };
+
+      console.log(data);
+
+      api.put(`/inviteds/${confirmedInvited.id}`, data);
+    }
+
+    setConfirmedInviteds([]);
+    setConfirmedPhoneInvited("");
   };
 
   return (
@@ -193,13 +258,15 @@ function Home() {
         title="Confirme sua Presença !"
         subtitle="Sua presença é muito importante para nós!"
       >
-        <ConfirmationForm>
+        <ConfirmationForm onSubmit={handleConfirmationSubmit}>
           <ConfirmationFormContainer>
             <ConfirmationFormInputContainer>
               <label htmlFor="phone">WhatsApp</label>
               <ConfirmationFormInput
                 name="phone"
-                type="tel"
+                type="text"
+                value={confirmedPhoneInvited}
+                onChange={(e) => handleConfirmedInvitedPhone(e)}
                 placeholder="(99) 99999-9999"
                 required
               />
@@ -207,13 +274,10 @@ function Home() {
 
             <ConfirmationFormInputContainer>
               <AutoComplete
-                options={[
-                  "Carlos Eduardo Alves Cardoso",
-                  "Polyana Pinheiro Cardoso",
-                  "Laura Salles Cardoso",
-                  "Marlene Alves Cardoso",
-                ]}
+                id="names"
+                options={invited}
                 placeholder="Informe o nome do convidado"
+                onChange={handleConfirmedInviteds}
               />
             </ConfirmationFormInputContainer>
           </ConfirmationFormContainer>

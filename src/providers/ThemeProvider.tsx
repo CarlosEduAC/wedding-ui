@@ -10,7 +10,6 @@ const ThemeProvider = ({ children }: ProvidersProps) => {
   const [theme, setTheme] = useState<ThemeType>("light");
 
   const toggleTheme = useCallback(() => {
-    console.log("toggleTheme");
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   }, []);
 

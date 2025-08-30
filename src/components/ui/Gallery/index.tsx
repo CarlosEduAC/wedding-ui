@@ -20,7 +20,6 @@ const Gallery: React.FC<GalleryProps> = ({ photos }) => {
   );
 
   React.useEffect(() => {
-    console.log(thumbStartIndex);
     setCanGoBack(thumbStartIndex > 0);
     setCanGoForward(thumbStartIndex + MAX_VISIBLE_THUMBS < photos.length);
   }, [thumbStartIndex, photos.length]);
