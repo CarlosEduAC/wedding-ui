@@ -24,6 +24,23 @@ export const Overlay = styled.a`
   top: 0;
   background-color: rgba(247, 248, 249, 0.75);
 `;
+
+export const CloseButton = styled.button`
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 32px;
+  font-weight: bold;
+  color: ${(props) => props.theme["neutral-900"]};
+  cursor: pointer;
+
+  &:hover {
+    color: ${(props) => props.theme["primary-500"]};
+  }
+`;
+
 export const Header = styled.header`
   display: flex;
   flex-direction: column;
@@ -57,6 +74,7 @@ export const Content = styled.div<{ $isMobile: boolean }>`
   display: flex;
   flex-direction: column;
   text-align: center;
+  position: relative;
   width: ${(props) => props.$isMobile ? "100vw" : "50vw"};
   background-color: ${(props) => props.theme["neutral-200"]};
   border-radius: 8px;

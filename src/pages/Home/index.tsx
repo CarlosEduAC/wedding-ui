@@ -24,6 +24,7 @@ import {
 import { Invited } from "@/models/Invited";
 
 import api from "@/services/wedding-api";
+import VideoPlayer from "@/components/ui/VideoPlayer";
 
 function Home() {
   const [invited, setInvited] = useState<Invited[]>([]);
@@ -31,6 +32,7 @@ function Home() {
   const [confirmedPhoneInvited, setConfirmedPhoneInvited] =
     useState<string>("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [videoIsOpen, setvideoIsOpen] = useState(false);
   const calculateTimeLeft = useCallback(() => {
     const eventTime = new Date("2025-10-18T15:00:00Z");
     const difference = +eventTime - +new Date();
@@ -71,8 +73,21 @@ function Home() {
     return () => clearInterval(timer);
   }, [calculateTimeLeft]);
 
+  useEffect(() => {
+    const alreadyVisited = localStorage.getItem("Wedding:HasVisited");
+
+    if (!alreadyVisited) {
+      setvideoIsOpen(true);
+      localStorage.setItem("Wedding:HasVisited", "true");
+    }
+  }, []);
+
   const changeModalStatus = () => {
     setModalIsOpen(!modalIsOpen);
+  };
+
+  const changeVideoStatus = () => {
+    setvideoIsOpen(!videoIsOpen);
   };
 
   const handleConfirmedInvitedPhone = (
@@ -183,17 +198,43 @@ function Home() {
         <PreWeddingContainer>
           <Gallery
             photos={[
-              "/image.jpg",
-              "/image2.jpeg",
-              "/image.jpg",
-              "/image2.jpeg",
-              "/image.jpg",
-              "/image2.jpeg",
-              "/image.jpg",
-              "/image2.jpeg",
-              "/image.jpg",
+              "/images/IMG-2.jpg",
+              "/images/IMG-3.jpg",
+              "/images/IMG-16.jpeg",
+              "/images/IMG-23.jpg",
+              "/images/IMG-25.jpeg",
+              "/images/IMG-27.jpg",
+              "/images/IMG-29.jpg",
+              "/images/IMG-35.jpeg",
+              "/images/IMG-39.jpg",
+              "/images/IMG-45.jpg",
+              "/images/IMG-46.jpg",
+              "/images/IMG-47.jpg",
+              "/images/IMG-48.jpeg",
+              "/images/IMG-49.jpg",
+              "/images/IMG-55.jpeg",
+              "/images/IMG-60.jpg",
+              "/images/IMG-62.jpg",
+              "/images/IMG-63.jpg",
+              "/images/IMG-65.jpg",
+              "/images/IMG-66.jpg",
+              "/images/IMG-68.jpg",
+              "/images/IMG-69.jpg",
+              "/images/IMG-83.jpeg",
+              "/images/IMG-87.jpg",
+              "/images/IMG-96.jpg",
+              "/images/IMG-98.jpg",
+              "/images/IMG-101.jpg",
             ]}
           />
+        </PreWeddingContainer>
+
+        <Title>
+          <h2>Nosso Filme</h2>
+        </Title>
+
+        <PreWeddingContainer>
+          <VideoPlayer autoPlay={false} />
         </PreWeddingContainer>
 
         <Title>
@@ -238,7 +279,15 @@ function Home() {
 
             <div>
               <Subtitle $primary>Local:</Subtitle>
-              <Subtitle>Lux Party - Rio das Ostras, RJ</Subtitle>
+              <Subtitle>
+                <a
+                  href="https://www.google.com.br/maps/place/Lux+Party/@-22.4765806,-42.0261507,17z/data=!3m1!4b1!4m6!3m5!1s0x97b3a5b94b1407:0x50b1b03a3180ad8d!8m2!3d-22.4765806!4d-42.0261507!16s%2Fg%2F11sbl6nh84?hl=pt-BR&entry=ttu&g_ep=EgoyMDI1MDgyNS4wIKXMDSoASAFQAw%3D%3D"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Lux Party - Rio das Ostras, RJ
+                </a>
+              </Subtitle>
             </div>
 
             <iframe
@@ -286,6 +335,10 @@ function Home() {
             Confirmar Presença
           </ConfirmationFormButton>
         </ConfirmationForm>
+      </Modal>
+
+      <Modal hideModal={changeVideoStatus} active={videoIsOpen} fullWidth>
+        <VideoPlayer autoPlay={true} />
       </Modal>
     </Background>
   );

@@ -6,13 +6,12 @@ export const Container = styled.div`
   align-items: center;
   gap: 16px;
   width: 100%;
-  /* max-width: 800px; */
-  margin: 0 auto;
+  margin: 0 auto 0 auto;
 `;
 
 export const MainPhoto = styled.img`
   width: 100%;
-  max-height: 500px;
+  max-height: 70vh;
   object-fit: contain;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -43,11 +42,6 @@ export const ThumbnailWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-`;
-
-export const NavButtons = styled.div`
-  display: flex;
-  gap: 16px;
 `;
 
 export const Button = styled.button`

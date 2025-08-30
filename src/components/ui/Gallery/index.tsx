@@ -32,6 +32,7 @@ const Gallery: React.FC<GalleryProps> = ({ photos }) => {
 
   const handleThumbnailClick = (index: number) => {
     setSelectedIndex(index);
+    setThumbStartIndex(index);
   };
 
   return (
@@ -43,7 +44,11 @@ const Gallery: React.FC<GalleryProps> = ({ photos }) => {
 
       <ThumbnailWrapper>
         <Button
-          onClick={() => setThumbStartIndex(thumbStartIndex - 1)}
+          onClick={() => {
+            const newStartIndex = thumbStartIndex - 1;
+            setThumbStartIndex(newStartIndex);
+            setSelectedIndex(newStartIndex);
+          }}
           disabled={!canGoBack}
         >
           ◀
@@ -61,24 +66,16 @@ const Gallery: React.FC<GalleryProps> = ({ photos }) => {
           );
         })}
         <Button
-          onClick={() => setThumbStartIndex(thumbStartIndex + 1)}
+          onClick={() => {
+            const newStartIndex = thumbStartIndex + 1;
+            setThumbStartIndex(newStartIndex);
+            setSelectedIndex(newStartIndex);
+          }}
           disabled={!canGoForward}
         >
           ▶
         </Button>
       </ThumbnailWrapper>
-
-      {/* <NavButtons>
-        <Button onClick={goToPrevious} disabled={selectedIndex === 0}>
-          Anterior
-        </Button>
-        <Button
-          onClick={goToNext}
-          disabled={selectedIndex === photos.length - 1}
-        >
-          Próxima
-        </Button>
-      </NavButtons> */}
     </Container>
   );
 };

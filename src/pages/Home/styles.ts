@@ -8,7 +8,7 @@ export const Background = styled.div`
     content: "";
     position: absolute;
     inset: 0;
-    background-image: url("/background2.png");
+    background-image: url("/images/background.png");
     background-size: 100%;
     z-index: -1;
     opacity: 0.2;
@@ -59,6 +59,16 @@ export const Subtitle = styled.p<{ $primary?: boolean }>`
   margin-top: ${({ $primary }) => ($primary ? "12px" : "8px")};
   color: ${({ $primary, theme }) =>
     $primary ? theme["primary-500"] : theme["primary-900"]};
+
+  a {
+    text-decoration: none;
+    color: ${({ $primary, theme }) =>
+      $primary ? theme["primary-500"] : theme["primary-900"]};
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `;
 
 export const Caption = styled.p`
