@@ -31,14 +31,6 @@ export default createGlobalStyle`
     font-weight: 500;
     font-style: normal;
     font-size: 16px;
-
-    /* @media screen and (max-width: 1359px) {
-      font-size: 1rem;
-    }
-
-    @media screen and (max-width: 1024px) {
-      font-size: 0.7rem;
-    } */
   }
 
   h1, h2, h3, h4, h5, h6, strong {

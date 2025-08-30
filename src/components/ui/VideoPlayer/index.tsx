@@ -1,4 +1,5 @@
 import React from "react";
+import { useWindow } from "@/hooks/useWindowDimension";
 import { Container } from "./styles";
 
 interface VideoPlayerProps {
@@ -10,10 +11,12 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   autoPlay,
   muted = false,
 }) => {
+  const { windowWidth } = useWindow();
+
   return (
     <Container>
       <video
-        width="80%"
+        width={windowWidth <= 490 ? "100%" : "80%"}
         controls
         autoPlay={autoPlay}
         muted={muted}

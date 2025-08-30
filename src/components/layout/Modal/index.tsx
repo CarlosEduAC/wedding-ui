@@ -35,9 +35,14 @@ function Modal({
         <Container>
           <Overlay onClick={() => hideModal()}></Overlay>
           <Content $isMobile={isMobile}>
-            <CloseButton onClick={() => hideModal()}>×</CloseButton>
+            <CloseButton
+              $isMobile={windowWidth <= 490}
+              onClick={() => hideModal()}
+            >
+              ×
+            </CloseButton>
             {(title != undefined || subtitle != undefined) && (
-              <Header>
+              <Header $isMobile={windowWidth <= 490}>
                 {title && <h1>{title}</h1>}
                 {subtitle && <h3>{subtitle}</h3>}
               </Header>

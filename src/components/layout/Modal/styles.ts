@@ -25,7 +25,7 @@ export const Overlay = styled.a`
   background-color: rgba(247, 248, 249, 0.75);
 `;
 
-export const CloseButton = styled.button`
+export const CloseButton = styled.button<{ $isMobile: boolean }>`
   position: absolute;
   top: 12px;
   right: 12px;
@@ -41,7 +41,7 @@ export const CloseButton = styled.button`
   }
 `;
 
-export const Header = styled.header`
+export const Header = styled.header<{ $isMobile: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -52,18 +52,19 @@ export const Header = styled.header`
 
   h1 {
     font-size: 42px;
+    margin: ${(props) => props.$isMobile ? "0 0 16px 0" : "0"};
     color: ${(props) => props.theme["primary-500"]};
   }
 
   h3 {
     font-family: "Parisienne", cursive;
-    font-size: 22px;
+    text-align: center;
+    font-size: ${(props) => props.$isMobile ? "20px" : "22px"};
     font-weight: 500;
   }
 
   @media screen and (max-width: 1080px) {
     h1 {
-      font-size: 42px;
       width: 240px;
       color: ${(props) => props.theme["primary-500"]};
     }
@@ -74,8 +75,10 @@ export const Content = styled.div<{ $isMobile: boolean }>`
   display: flex;
   flex-direction: column;
   text-align: center;
+  justify-content: ${(props) => props.$isMobile ? "center" : "flex-start"};
   position: relative;
   width: ${(props) => props.$isMobile ? "100vw" : "50vw"};
+  height: ${(props) => props.$isMobile ? "100vh" : "auto"};
   background-color: ${(props) => props.theme["neutral-200"]};
   border-radius: 8px;
   z-index: 1;

@@ -15,7 +15,7 @@ export const Background = styled.div`
   }
 `;
 
-export const Container = styled.main`
+export const Container = styled.main<{ $isMobile?: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,10 +23,10 @@ export const Container = styled.main`
 
   flex: 1;
 
-  margin: 4rem 0 0;
+  margin: ${({ $isMobile }) => ($isMobile ? "4rem 2rem 0" : "4rem 0 0")};
 `;
 
-export const Title = styled.div`
+export const Title = styled.div<{ $isMobile?: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,35 +35,51 @@ export const Title = styled.div`
 
   h1 {
     font-family: "Parisienne", cursive;
-    font-size: 72px;
+    font-size: ${({ $isMobile }) => ($isMobile ? "48px" : "72px")};
   }
 
   p {
-    font-size: 32px;
+    font-size: ${({ $isMobile }) => ($isMobile ? "24px" : "32px")};
     color: ${({ theme }) => theme["primary-900"]};
   }
 
   h1 + p {
-    margin: 1rem 0 1rem 0;
+    margin: ${({ $isMobile }) =>
+      $isMobile ? "0.5rem 0 0.1rem 0" : "1rem 0 1rem 0"};
   }
 
   h2 {
     font-family: "Parisienne", cursive;
-    font-size: 48px;
+    font-size: ${({ $isMobile }) => ($isMobile ? "32px" : "48px")};
     margin: 48px 0 8px 0;
   }
 `;
 
-export const Subtitle = styled.p<{ $primary?: boolean }>`
-  text-align: left;
+export const Subtitle = styled.p<{
+  $primary?: boolean;
+  $isMobile?: boolean;
+  $isLabel?: boolean;
+  $isLink?: boolean;
+}>`
+  text-align: ${({ $isLabel }) => ($isLabel ? "left" : "center")};
+  font-size: ${({ $isMobile }) => ($isMobile ? "12px" : "16px")};
   margin-top: ${({ $primary }) => ($primary ? "12px" : "8px")};
-  color: ${({ $primary, theme }) =>
-    $primary ? theme["primary-500"] : theme["primary-900"]};
+   color: ${({ $primary, theme }) =>
+      $primary ? theme["primary-500"] : theme["primary-900"]};
 
   a {
     text-decoration: none;
-    color: ${({ $primary, theme }) =>
-      $primary ? theme["primary-500"] : theme["primary-900"]};
+    color: ${({ $primary, $isLink, theme }) => {
+      let color;
+      if ($primary) {
+        color = theme["primary-500"];
+      } else if ($isLink) {
+        color = theme["primary-300"];
+      } else {
+        color = theme["primary-900"];
+      }
+      return color;
+    }};
 
     &:hover {
       text-decoration: underline;
@@ -71,51 +87,52 @@ export const Subtitle = styled.p<{ $primary?: boolean }>`
   }
 `;
 
-export const Caption = styled.p`
+export const Caption = styled.p<{ $isMobile?: boolean }>`
   text-align: center;
   margin: 24px 0 0 0;
   font-family: "Parisienne", cursive;
-  font-size: 24px;
+  font-size: ${({ $isMobile }) => ($isMobile ? "20px" : "24px")};
   color: ${({ theme }) => theme["primary-300"]};
 `;
 
-export const CountdownTimer = styled.div`
+export const CountdownTimer = styled.div<{ $isMobile?: boolean }>`
   display: flex;
   gap: 8px;
-  margin: 48px 0 0 0;
+  margin: ${({ $isMobile }) => ($isMobile ? "24px 0 0 0" : "48px 0 0 0")};
   border-radius: 16px;
   color: ${({ theme }) => theme["primary-100"]};
 `;
 
-export const CountdownTimerUnit = styled.div`
+export const CountdownTimerUnit = styled.div<{ $isMobile?: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 80px;
+  width: ${({ $isMobile }) => ($isMobile ? "60px" : "80px")};
+  height: ${({ $isMobile }) => ($isMobile ? "60px" : "80px")};
   border-radius: 64px;
 
   background-color: ${({ theme }) => theme["primary-500"]};
   color: ${({ theme }) => theme["primary-100"]};
 
   b {
-    font-size: 22px;
+    font-size: ${({ $isMobile }) => ($isMobile ? "18px" : "22px")};
     font-weight: 700;
   }
 
   p {
-    font-size: 8px;
+    font-size: ${({ $isMobile }) => ($isMobile ? "7px" : "8px")};
   }
 `;
 
-export const ConfirmationButton = styled.button`
+export const ConfirmationButton = styled.button<{ $isMobile?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
 
-  margin: 48px 0 0 0;
-  padding: 24px 120px 24px 120px;
+  margin: ${({ $isMobile }) => ($isMobile ? "24px 0 0 0" : "48px 0 0 0")};
+  padding: ${({ $isMobile }) =>
+    $isMobile ? "16px 32px 16px 32px" : "24px 120px 24px 120px"};
   cursor: pointer;
   background-color: ${({ theme }) => theme["primary-700"]};
   border: none;
@@ -128,13 +145,14 @@ export const ConfirmationButton = styled.button`
   }
 `;
 
-export const Message = styled.div`
+export const Message = styled.div<{ $isMobile?: boolean }>`
   display: flex;
   flex-direction: column;
   width: 100%;
   margin: 48px 0 0 0;
   padding: 32px;
   border-radius: 16px;
+  font-size: ${({ $isMobile }) => ($isMobile ? "12px" : "16px")};
 
   background-color: ${({ theme }) => theme["neutral-300"]};
   color: ${({ theme }) => theme["primary-700"]};
@@ -208,7 +226,7 @@ export const ConfirmationFormContainer = styled.div`
   margin: 0 0 46px 0;
 `;
 
-export const ConfirmationFormInputContainer = styled.div`
+export const ConfirmationFormInputContainer = styled.div<{ $isMobile?: boolean }>`
   display: flex;
   flex-direction: column;
 
@@ -217,6 +235,10 @@ export const ConfirmationFormInputContainer = styled.div`
     font-weight: 700;
     text-align: left;
     margin: 0 0 4px 0;
+  }
+
+  input {
+    font-size: ${({ $isMobile }) => ($isMobile ? "14px" : "16px")};
   }
 `;
 
@@ -235,14 +257,14 @@ export const ConfirmationFormInput = styled.input`
   }
 `;
 
-export const ConfirmationFormButton = styled.button`
+export const ConfirmationFormButton = styled.button<{ $isMobile?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 70%;
+  width: ${({ $isMobile }) => ($isMobile ? "100%" : "70%")};
 
   padding: 12px 24px;
-  margin: 32px 0 0 0;
+  margin: ${({ $isMobile }) => ($isMobile ? "16px 0 0 0" : "32px 0 0 0")};
   cursor: pointer;
   background-color: ${({ theme }) => theme["primary-500"]};
   border: none;

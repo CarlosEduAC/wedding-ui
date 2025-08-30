@@ -1,7 +1,11 @@
+import api from "@/services/wedding-api";
+import VideoPlayer from "@/components/ui/VideoPlayer";
 import { useState, useEffect, useCallback } from "react";
 import { Footer, Modal } from "@/components/layout";
 import { Gallery } from "@/components/ui/Gallery";
 import { AutoComplete } from "@/components/ui/AutoComplete";
+import { useWindow } from "@/hooks/useWindowDimension";
+import { Invited } from "@/models/Invited";
 import {
   Background,
   Container,
@@ -21,10 +25,6 @@ import {
   ConfirmationFormButton,
   PreWeddingContainer,
 } from "./styles";
-import { Invited } from "@/models/Invited";
-
-import api from "@/services/wedding-api";
-import VideoPlayer from "@/components/ui/VideoPlayer";
 
 function Home() {
   const [invited, setInvited] = useState<Invited[]>([]);
@@ -56,6 +56,7 @@ function Home() {
       console.error("Error fetching invited guests:", error);
     }
   }, []);
+  const { windowWidth } = useWindow();
 
   const [timeLeft, setTimeLeft] = useState<
     ReturnType<typeof calculateTimeLeft>
@@ -138,38 +139,47 @@ function Home() {
 
   return (
     <Background>
-      <Container>
-        <Title>
+      <Container $isMobile={windowWidth <= 490}>
+        <Title $isMobile={windowWidth <= 490}>
           <h1>Polyana</h1> <p>&</p> <h1>Carlos Eduardo</h1>
         </Title>
-        <Subtitle $primary>Vão se casar </Subtitle>
-        <Subtitle>Em 18 de Outubro de 2025</Subtitle>
-        <Subtitle>
+        <Subtitle $primary $isMobile={windowWidth <= 490}>
+          Vão se casar
+        </Subtitle>
+        <Subtitle $isMobile={windowWidth <= 490}>
+          Em 18 de Outubro de 2025
+        </Subtitle>
+        <Subtitle $isMobile={windowWidth <= 490}>
           Na Paróquia São Benedito Jardim Mariléia - Rio das Ostras, RJ
         </Subtitle>
 
-        <Caption>Esperamos que você faça parte do nosso dia especial!</Caption>
+        <Caption $isMobile={windowWidth <= 490}>
+          Esperamos que você faça parte do nosso dia especial!
+        </Caption>
 
-        <CountdownTimer>
-          <CountdownTimerUnit>
+        <CountdownTimer $isMobile={windowWidth <= 490}>
+          <CountdownTimerUnit $isMobile={windowWidth <= 490}>
             <b>{timeLeft?.days ?? "00"}</b> <p>Dias</p>
           </CountdownTimerUnit>
-          <CountdownTimerUnit>
+          <CountdownTimerUnit $isMobile={windowWidth <= 490}>
             <b>{timeLeft?.hours ?? "00"}</b> <p>Horas</p>
           </CountdownTimerUnit>
-          <CountdownTimerUnit>
+          <CountdownTimerUnit $isMobile={windowWidth <= 490}>
             <b>{timeLeft?.minutes ?? "00"}</b> <p>Minutos</p>
           </CountdownTimerUnit>
-          <CountdownTimerUnit>
+          <CountdownTimerUnit $isMobile={windowWidth <= 490}>
             <b>{timeLeft?.seconds ?? "00"}</b> <p>Segundos</p>
           </CountdownTimerUnit>
         </CountdownTimer>
 
-        <ConfirmationButton onClick={() => changeModalStatus()}>
+        <ConfirmationButton
+          onClick={() => changeModalStatus()}
+          $isMobile={windowWidth <= 490}
+        >
           Confirme sua Presença
         </ConfirmationButton>
 
-        <Message>
+        <Message $isMobile={windowWidth <= 490}>
           <b>"Um Amor, Uma História, Um Dia Inesquecível"</b>
 
           <p>Seja bem-vindo ao nosso site de casamento!</p>
@@ -191,7 +201,7 @@ function Home() {
           <b>Polyana & Carlos Eduardo</b>
         </Message>
 
-        <Title>
+        <Title $isMobile={windowWidth <= 490}>
           <h2>Pré Wedding</h2>
         </Title>
 
@@ -229,7 +239,7 @@ function Home() {
           />
         </PreWeddingContainer>
 
-        <Title>
+        <Title $isMobile={windowWidth <= 490}>
           <h2>Nosso Filme</h2>
         </Title>
 
@@ -237,25 +247,35 @@ function Home() {
           <VideoPlayer autoPlay={false} />
         </PreWeddingContainer>
 
-        <Title>
+        <Title $isMobile={windowWidth <= 490}>
           <h2>Informações do Evento</h2>
         </Title>
 
         <CardContainer>
           <Card>
             <div>
-              <Subtitle $primary>Data:</Subtitle>
-              <Subtitle>18 de Outubro de 2025</Subtitle>
+              <Subtitle $primary $isMobile={windowWidth <= 490} $isLabel>
+                Data:
+              </Subtitle>
+              <Subtitle $isMobile={windowWidth <= 490} $isLabel>
+                18 de Outubro de 2025
+              </Subtitle>
             </div>
 
             <div>
-              <Subtitle $primary>Horário:</Subtitle>
-              <Subtitle>15:00</Subtitle>
+              <Subtitle $primary $isMobile={windowWidth <= 490} $isLabel>
+                Horário:
+              </Subtitle>
+              <Subtitle $isMobile={windowWidth <= 490} $isLabel>
+                15:00
+              </Subtitle>
             </div>
 
             <div>
-              <Subtitle $primary>Local:</Subtitle>
-              <Subtitle>
+              <Subtitle $primary $isMobile={windowWidth <= 490} $isLabel>
+                Local:
+              </Subtitle>
+              <Subtitle $isMobile={windowWidth <= 490} $isLabel>
                 Paróquia São Benedito Jardim Mariléia - Rio das Ostras, RJ
               </Subtitle>
             </div>
@@ -268,18 +288,28 @@ function Home() {
           </Card>
           <Card>
             <div>
-              <Subtitle $primary>Data:</Subtitle>
-              <Subtitle>18 de Outubro de 2025</Subtitle>
+              <Subtitle $primary $isMobile={windowWidth <= 490} $isLabel>
+                Data:
+              </Subtitle>
+              <Subtitle $isMobile={windowWidth <= 490} $isLabel>
+                18 de Outubro de 2025
+              </Subtitle>
             </div>
 
             <div>
-              <Subtitle $primary>Horário:</Subtitle>
-              <Subtitle>17:00</Subtitle>
+              <Subtitle $primary $isMobile={windowWidth <= 490} $isLabel>
+                Horário:
+              </Subtitle>
+              <Subtitle $isMobile={windowWidth <= 490} $isLabel>
+                17:00
+              </Subtitle>
             </div>
 
             <div>
-              <Subtitle $primary>Local:</Subtitle>
-              <Subtitle>
+              <Subtitle $primary $isMobile={windowWidth <= 490} $isLabel>
+                Local:
+              </Subtitle>
+              <Subtitle $isMobile={windowWidth <= 490} $isLabel $isLink>
                 <a
                   href="https://www.google.com.br/maps/place/Lux+Party/@-22.4765806,-42.0261507,17z/data=!3m1!4b1!4m6!3m5!1s0x97b3a5b94b1407:0x50b1b03a3180ad8d!8m2!3d-22.4765806!4d-42.0261507!16s%2Fg%2F11sbl6nh84?hl=pt-BR&entry=ttu&g_ep=EgoyMDI1MDgyNS4wIKXMDSoASAFQAw%3D%3D"
                   target="_blank"
@@ -309,7 +339,7 @@ function Home() {
       >
         <ConfirmationForm onSubmit={handleConfirmationSubmit}>
           <ConfirmationFormContainer>
-            <ConfirmationFormInputContainer>
+            <ConfirmationFormInputContainer $isMobile={windowWidth <= 490}>
               <label htmlFor="phone">WhatsApp</label>
               <ConfirmationFormInput
                 name="phone"
@@ -321,7 +351,7 @@ function Home() {
               />
             </ConfirmationFormInputContainer>
 
-            <ConfirmationFormInputContainer>
+            <ConfirmationFormInputContainer $isMobile={windowWidth <= 490}>
               <AutoComplete
                 id="names"
                 options={invited}
@@ -331,7 +361,7 @@ function Home() {
             </ConfirmationFormInputContainer>
           </ConfirmationFormContainer>
 
-          <ConfirmationFormButton type="submit">
+          <ConfirmationFormButton type="submit" $isMobile={windowWidth <= 490}>
             Confirmar Presença
           </ConfirmationFormButton>
         </ConfirmationForm>
