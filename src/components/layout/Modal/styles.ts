@@ -27,7 +27,7 @@ export const Overlay = styled.a`
 
 export const CloseButton = styled.button<{ $isMobile: boolean }>`
   position: absolute;
-  top: 16px;
+  top: 32px;
   right: 32px;
   background: none;
   border: none;
