@@ -33,7 +33,6 @@ function Home() {
   const [confirmedPhoneInvited, setConfirmedPhoneInvited] =
     useState<string>("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [videoIsOpen, setvideoIsOpen] = useState(false);
   const calculateTimeLeft = useCallback(() => {
     const eventTime = new Date("2025-10-18T15:00:00Z");
     const difference = +eventTime - +new Date();
@@ -75,21 +74,8 @@ function Home() {
     return () => clearInterval(timer);
   }, [calculateTimeLeft]);
 
-  useEffect(() => {
-    const alreadyVisited = localStorage.getItem("Wedding:HasVisited");
-
-    if (!alreadyVisited) {
-      setvideoIsOpen(true);
-      localStorage.setItem("Wedding:HasVisited", "true");
-    }
-  }, []);
-
   const changeModalStatus = () => {
     setModalIsOpen(!modalIsOpen);
-  };
-
-  const changeVideoStatus = () => {
-    setvideoIsOpen(!videoIsOpen);
   };
 
   const handleConfirmedInvitedPhone = (
@@ -366,10 +352,6 @@ function Home() {
             Confirmar Presença
           </ConfirmationFormButton>
         </ConfirmationForm>
-      </Modal>
-
-      <Modal hideModal={changeVideoStatus} active={videoIsOpen} fullWidth>
-        <VideoPlayer />
       </Modal>
     </Background>
   );

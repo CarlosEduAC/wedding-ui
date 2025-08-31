@@ -27,17 +27,17 @@ export const Overlay = styled.a`
 
 export const CloseButton = styled.button<{ $isMobile: boolean }>`
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 16px;
+  right: 32px;
   background: none;
   border: none;
-  font-size: 32px;
+  font-size: 42px;
   font-weight: bold;
   color: ${(props) => props.theme["neutral-900"]};
   cursor: pointer;
 
   &:hover {
-    color: ${(props) => props.theme["primary-500"]};
+    color: ${(props) => props.theme["primary-300"]};
   }
 `;
 
