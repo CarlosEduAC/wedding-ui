@@ -284,3 +284,10 @@ export const ConfirmationFormButton = styled.button<{ $isMobile?: boolean }>`
 `;
 
 export const PreWeddingContainer = styled.div``;
+
+export const PreWeddingVideoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+`;

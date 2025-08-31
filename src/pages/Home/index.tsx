@@ -24,6 +24,7 @@ import {
   ConfirmationFormInput,
   ConfirmationFormButton,
   PreWeddingContainer,
+  PreWeddingVideoContainer,
 } from "./styles";
 
 function Home() {
@@ -243,9 +244,9 @@ function Home() {
           <h2>Nosso Filme</h2>
         </Title>
 
-        <PreWeddingContainer>
-          <VideoPlayer autoPlay={false} />
-        </PreWeddingContainer>
+        <PreWeddingVideoContainer>
+          <VideoPlayer />
+        </PreWeddingVideoContainer>
 
         <Title $isMobile={windowWidth <= 490}>
           <h2>Informações do Evento</h2>
@@ -368,7 +369,7 @@ function Home() {
       </Modal>
 
       <Modal hideModal={changeVideoStatus} active={videoIsOpen} fullWidth>
-        <VideoPlayer autoPlay={true} />
+        <VideoPlayer />
       </Modal>
     </Background>
   );
