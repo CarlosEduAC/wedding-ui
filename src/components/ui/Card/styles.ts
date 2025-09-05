@@ -17,12 +17,12 @@ export const Figure = styled.figure`
   }
 `;
 
-export const FigureImage = styled.img`
-  width: 132px;
+export const FigureImage = styled.img<{ $isMobile: boolean }>`
+  width: ${({ $isMobile }) => ($isMobile ? "260px" : "132px")};
   margin: 0 0 8px 0;
 `;
 
-export const FigureCaption = styled.figcaption`
+export const FigureCaption = styled.figcaption<{ $isMobile: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,25 +30,26 @@ export const FigureCaption = styled.figcaption`
   width: 100%;
 
   strong {
-    font-size: 14px;
+    font-size: ${({ $isMobile }) => ($isMobile ? "20px" : "14px")};
+
     margin: 0 0 8px 0;
     color: ${(props) => props.theme["primary-500"]};
   }
 `;
 
-export const FigurePrice = styled.div`
+export const FigurePrice = styled.div<{ $isMobile: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
 
   span {
-    font-size: 14px;
+    font-size: ${({ $isMobile }) => ($isMobile ? "20px" : "14px")};
     color: ${(props) => props.theme["primary-500"]};
     margin: 0 0 0 8px;
   }
 `;
 
-export const ButtonGroup = styled.div`
+export const ButtonGroup = styled.div<{ $isMobile: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -56,8 +57,11 @@ export const ButtonGroup = styled.div`
   gap: 16px;
 
   button {
-    width: 32px;
-    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: ${({ $isMobile }) => ($isMobile ? "42px" : "32px")};
+    height: ${({ $isMobile }) => ($isMobile ? "42px" : "32px")};
     border-radius: 8px;
     background-color: ${(props) => props.theme["primary-500"]};
     color: ${(props) => props.theme["neutral-100"]};
@@ -70,18 +74,18 @@ export const ButtonGroup = styled.div`
   }
 
   label {
-    font-size: 1.2em;
+    font-size: ${({ $isMobile }) => ($isMobile ? "1.5em" : "1.2em")};
     color: ${(props) => props.theme["primary-500"]};
   }
 `;
 
-export const ButtonAdd = styled.button`
+export const ButtonAdd = styled.button<{ $isMobile: boolean }>`
   width: 100%;
-  height: 32px;
+  height: ${({ $isMobile }) => ($isMobile ? "46px" : "32px")};
   border-radius: 8px;
   margin: 8px 0 0 0;
   font-weight: 700;
-  font-size: 12px;
+  font-size: ${({ $isMobile }) => ($isMobile ? "16px" : "12px")};
   text-transform: uppercase;
   cursor: pointer;
   background: ${(props) => props.theme["primary-500"]};

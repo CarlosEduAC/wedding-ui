@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { FaHeart } from "react-icons/fa";
-// import api from "../../services/api";
+import React from "react";
+import { FaHeart, FaMinus, FaPlus } from "react-icons/fa";
 import { useCart } from "@/hooks/useCart";
-import { Item } from "@/models/Cart";
-import { FaMinus, FaPlus } from "react-icons/fa";
+import { CardProps } from "../../../models/Card";
 import {
   Figure,
   FigureImage,
@@ -12,67 +10,47 @@ import {
   ButtonAdd,
   FigurePrice,
 } from "./styles";
+import { useWindow } from "@/hooks/useWindowDimension";
 
-interface CardProps {
-  id: number;
-  name: string;
-}
-
-const Card: React.FC<CardProps> = ({ id, name }) => {
+const Card: React.FC<CardProps> = ({ id, name, image, price, quantity }) => {
   const { addToCart, increment, decrement } = useCart();
-  const [item, setItem] = useState<Item>({} as Item);
-
-  const existsItem: boolean = Object.keys(item).length > 0;
-
-  useEffect(() => {
-    async function getItemInfo() {
-      // const response = await api.get(`item/${id}`);
-
-      setItem({
-        id,
-        image: `https://imgs.casasbahia.com.br/55032021/1g.jpg`,
-        name,
-        price: 239.0,
-        quantity: 0,
-      });
-    }
-
-    getItemInfo();
-  }, [id, name]);
+  const { windowWidth } = useWindow();
 
   return (
-    existsItem && (
-      <Figure key={id}>
-        <FigureImage src={item?.image} alt={item?.name} />
+    <Figure key={id}>
+      <FigureImage src={image} alt={name} $isMobile={windowWidth <= 490} />
 
-        <FigureCaption>
-          <strong>{item.name}</strong>
+      <FigureCaption $isMobile={windowWidth <= 490}>
+        <strong>{name}</strong>
 
-          <FigurePrice>
-            <FaHeart color="red" />
-            <span>{item.price.toFixed(2)}</span>
-          </FigurePrice>
+        <FigurePrice $isMobile={windowWidth <= 490}>
+          <FaHeart color="red" />
+          <span>{price.toFixed(2)}</span>
+        </FigurePrice>
 
-          {item.quantity > 0 ? (
-            <ButtonGroup>
-              <button type="button" onClick={() => decrement(item.name)}>
-                <FaMinus />
-              </button>
+        {quantity <= 0 ? (
+          <ButtonGroup $isMobile={windowWidth <= 490}>
+            <button type="button" onClick={() => decrement(name)}>
+              <FaMinus />
+            </button>
 
-              <label>{item.quantity}</label>
+            <label>{quantity}</label>
 
-              <button type="button" onClick={() => increment(item.name)}>
-                <FaPlus />
-              </button>
-            </ButtonGroup>
-          ) : (
-            <ButtonAdd type="button" onClick={() => addToCart(item)}>
-              Adicionar
-            </ButtonAdd>
-          )}
-        </FigureCaption>
-      </Figure>
-    )
+            <button type="button" onClick={() => increment(name)}>
+              <FaPlus />
+            </button>
+          </ButtonGroup>
+        ) : (
+          <ButtonAdd
+            type="button"
+            onClick={() => addToCart({ id, name, image, price, quantity })}
+            $isMobile={windowWidth <= 490}
+          >
+            Adicionar
+          </ButtonAdd>
+        )}
+      </FigureCaption>
+    </Figure>
   );
 };
 

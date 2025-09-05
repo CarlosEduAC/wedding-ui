@@ -11,4 +11,7 @@ export const lightTheme = {
   "primary-500": "#0f4c81",
   "primary-700": "#163455",
   "primary-900": "#07233b",
+
+  "success-500": "#15c771",
+  "error-500": "#a1463c",
 };

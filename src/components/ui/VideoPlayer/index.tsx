@@ -9,7 +9,7 @@ const VideoPlayer: React.FC = () => {
   return (
     <Container>
       <ReactPlayer
-        src="https://youtu.be/IvvFGubLOOw?cc_load_policy=1&cc_lang_pref=pt"
+        src="https://www.youtube.com/watch?v=fbqK3fRER6M"
         width={windowWidth <= 490 ? "100%" : "80%"}
         height={windowWidth <= 490 ? "240px" : "80vh"}
         controls

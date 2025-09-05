@@ -1,5 +1,6 @@
 export interface Invited {
-  id: string
+  id: number
   name: string
+  whatsapp: string
   confirm: boolean
 }

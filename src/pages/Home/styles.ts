@@ -148,7 +148,7 @@ export const ConfirmationButton = styled.button<{ $isMobile?: boolean }>`
 export const Message = styled.div<{ $isMobile?: boolean }>`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 60%;
   margin: 48px 0 0 0;
   padding: 32px;
   border-radius: 16px;

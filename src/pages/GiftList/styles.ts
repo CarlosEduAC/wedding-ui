@@ -11,16 +11,25 @@ export const Container = styled.main`
   margin: 0 32px 0 32px;
 `;
 
-export const SubTitle = styled.div`
+export const SearchMobileContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 8px;
+`;
+
+export const SubTitle = styled.div<{ $isMobile?: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin: 0 0 64px 0;
+  margin: ${({ $isMobile }) => ($isMobile ? "0 0 32px 0" : "0 0 64px 0")};
   color: ${({ theme }) => theme["primary-500"]};
 
   p {
-    font-size: 16px;
+    font-size: ${({ $isMobile }) => ($isMobile ? "14px" : "16px")};
     color: ${({ theme }) => theme["primary-900"]};
   }
 `;

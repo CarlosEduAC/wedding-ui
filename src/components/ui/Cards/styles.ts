@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
-export const Container = styled.section`
+export const Container = styled.section<{ $isMobile: boolean }>`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: ${({ $isMobile }) => ($isMobile ? "column" : "row")};
+  flex-wrap: ${({ $isMobile }) => ($isMobile ? "nowrap" : "wrap")};
   align-items: center;
   gap: 32px;
 

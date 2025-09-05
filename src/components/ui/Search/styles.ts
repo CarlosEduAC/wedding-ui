@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.div<{ isMobile?: boolean }>`
   display: flex;
   align-items: center;
-  width: 480px;
+  width: ${({isMobile}) => isMobile ? '100%' : '480px'};
   padding: 8px 16px 8px 16px;
   border-radius: 8px;
   border: 1px solid ${(props) => props.theme["primary-500"]};

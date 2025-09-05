@@ -26,9 +26,14 @@ import {
   PreWeddingContainer,
   PreWeddingVideoContainer,
 } from "./styles";
+import Feedback from "@/components/ui/Feedback";
 
 function Home() {
   const [invited, setInvited] = useState<Invited[]>([]);
+  const [feedbackMessage, setFeedbackMessage] = useState<string>("");
+  const [feedbackType, setFeedbackType] = useState<"success" | "error">(
+    "success"
+  );
   const [confirmedInviteds, setConfirmedInviteds] = useState<Invited[]>([]);
   const [confirmedPhoneInvited, setConfirmedPhoneInvited] =
     useState<string>("");
@@ -61,6 +66,20 @@ function Home() {
   const [timeLeft, setTimeLeft] = useState<
     ReturnType<typeof calculateTimeLeft>
   >(calculateTimeLeft());
+
+  useEffect(() => {
+    if (!feedbackMessage) return;
+
+    const timer = setTimeout(() => {
+      setFeedbackMessage("");
+
+      if (feedbackType === "success") {
+        setModalIsOpen(false);
+      }
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [feedbackMessage, feedbackType]);
 
   useEffect(() => {
     fetchInvitedGuests();
@@ -107,19 +126,26 @@ function Home() {
 
     const whatsapp = confirmedPhoneInvited.replace(/\D/g, "");
 
+    if (confirmedInviteds.length === 0) {
+      setFeedbackMessage("Por favor, adicione apenas convidados válidos.");
+      setFeedbackType("error");
+      return;
+    }
+
     for (const confirmedInvited of confirmedInviteds) {
       const data = {
         id: confirmedInvited.id,
         name: confirmedInvited.name,
         whatsapp,
-        confirm: true,
+        confirmed: true,
       };
-
-      console.log(data);
+      console.log("Dados para envio:", data);
 
       api.put(`/inviteds/${confirmedInvited.id}`, data);
     }
 
+    setFeedbackMessage("Confirmação enviada com sucesso!");
+    setFeedbackType("success");
     setConfirmedInviteds([]);
     setConfirmedPhoneInvited("");
   };
@@ -325,6 +351,9 @@ function Home() {
         subtitle="Sua presença é muito importante para nós!"
       >
         <ConfirmationForm onSubmit={handleConfirmationSubmit}>
+          {feedbackMessage && (
+            <Feedback type={feedbackType} message={feedbackMessage} />
+          )}
           <ConfirmationFormContainer>
             <ConfirmationFormInputContainer $isMobile={windowWidth <= 490}>
               <label htmlFor="phone">WhatsApp</label>
