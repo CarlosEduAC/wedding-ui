@@ -11,4 +11,7 @@ export const darkTheme = {
   "primary-500": "#0f4c81",
   "primary-700": "#218ae5",
   "primary-900": "#d0e6fa",
+
+  "success-500": "#15c771",
+  "error-500": "#a1463c",
 };
