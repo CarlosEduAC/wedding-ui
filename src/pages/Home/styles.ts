@@ -152,12 +152,13 @@ export const GiftListButton = styled.button<{ $isMobile?: boolean }>`
 
   margin: ${({ $isMobile }) => ($isMobile ? "12px 0 0 0" : "16px 0 0 0")};
   padding: ${({ $isMobile }) =>
-    $isMobile ? "16px 32px 16px 32px" : "24px 120px 24px 120px"};
+    $isMobile ? "16px 32px 16px 32px" : "16px 90px 16px 90px"};
   cursor: pointer;
-  background-color: ${({ theme }) => theme["primary-700"]};
-  border: none;
+  background-color: ${({ theme }) => theme["neutral-300"]};
+  border: 1px solid ${({ theme }) => theme["primary-700"]};
   border-radius: 16px;
-  color: ${({ theme }) => theme["primary-100"]};
+  color: ${({ theme }) => theme["primary-700"]};
+  font-weight: bold;
 
   &:hover {
     background-color: ${({ theme }) => theme["primary-500"]};
