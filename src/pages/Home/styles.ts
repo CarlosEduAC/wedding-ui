@@ -130,7 +130,7 @@ export const ConfirmationButton = styled.button<{ $isMobile?: boolean }>`
   align-items: center;
   justify-content: center;
 
-  margin: ${({ $isMobile }) => ($isMobile ? "24px 0 0 0" : "48px 0 0 0")};
+  margin: ${({ $isMobile }) => ($isMobile ? "24px 0 24px 0" : "48px 0 48px 0")};
   padding: ${({ $isMobile }) =>
     $isMobile ? "16px 32px 16px 32px" : "24px 120px 24px 120px"};
   cursor: pointer;
@@ -145,12 +145,39 @@ export const ConfirmationButton = styled.button<{ $isMobile?: boolean }>`
   }
 `;
 
-export const Message = styled.div<{ $isMobile?: boolean }>`
+export const GiftListButton = styled.button<{ $isMobile?: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: ${({ $isMobile }) => ($isMobile ? "16px 0 0 0" : "16px 0 0 0")};
+  padding: ${({ $isMobile }) =>
+    $isMobile ? "16px 32px 16px 32px" : "24px 88px 24px 88px"};
+  cursor: pointer;
+  background-color: ${({ theme }) => theme["primary-700"]};
+  border: none;
+  border-radius: 16px;
+  color: ${({ theme }) => theme["primary-100"]};
+
+  &:hover {
+    background-color: ${({ theme }) => theme["primary-500"]};
+    color: ${({ theme }) => theme["neutral-200"]};
+  }
+`;
+
+export const Message = styled.div<{ $isMobile?: boolean, $center?: boolean }>`
   display: flex;
   flex-direction: column;
   width: 60%;
-  margin: 48px 0 0 0;
+  margin: 0 0 0 0;
   padding: 32px;
+
+  ${({ $center }) =>
+    $center &&
+    `
+    align-items: center;
+    text-align: center;
+  `}
   border-radius: 16px;
   font-size: ${({ $isMobile }) => ($isMobile ? "12px" : "16px")};
 
@@ -171,7 +198,7 @@ export const CardContainer = styled.div`
   flex-wrap: wrap;
   gap: 16px;
 
-  margin: 0 0 64px 0;
+  margin: 0 0 0 0;
 
   iframe {
     width: 100%;

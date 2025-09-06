@@ -25,8 +25,10 @@ import {
   ConfirmationFormButton,
   PreWeddingContainer,
   PreWeddingVideoContainer,
+  GiftListButton,
 } from "./styles";
 import Feedback from "@/components/ui/Feedback";
+import QRCode from "@/components/ui/QRCode";
 
 function Home() {
   const [invited, setInvited] = useState<Invited[]>([]);
@@ -119,6 +121,13 @@ function Home() {
     setConfirmedInviteds(value);
   };
 
+  const openGiftListSite = () => {
+    window.open(
+      "https://sites.icasei.com.br/polyanaecarloseduardo/pages/35979233",
+      "_blank"
+    );
+  };
+
   const handleConfirmationSubmit = (
     event: React.FormEvent<HTMLFormElement>
   ) => {
@@ -193,15 +202,29 @@ function Home() {
         </ConfirmationButton>
 
         <Message $isMobile={windowWidth <= 490}>
-          <b>"Um Amor, Uma História, Um Dia Inesquecível"</b>
-
-          <p>Seja bem-vindo ao nosso site de casamento!</p>
+          <b>✨ Nossa História de Amor ✨</b>
 
           <p>
-            Aqui começa um novo capítulo da nossa história — e você faz parte
-            dele. Após anos de amor, risos e aprendizados, decidimos dar o passo
-            mais importante de nossas vidas: dizer "sim" diante de Deus, da vida
-            e das pessoas que mais amamos.
+            “Assim, eles já não são dois, mas sim uma só carne. Portanto, o que
+            Deus uniu, ninguém o separe.” (Mateus 19:6)
+          </p>
+
+          <p>
+            Deus nos uniu de uma forma tão linda e especial. Nossa história
+            nasceu no cuidado d’Ele e foi crescendo com amor, companheirismo e
+            fé. Agora, damos mais um passo importante: o início da nossa vida
+            como família.
+          </p>
+
+          <p>
+            Esse sonho só faz sentido porque podemos compartilhá-lo com pessoas
+            queridas, que fizeram e fazem parte da nossa caminhada. Você é muito
+            especial para nós, e ter sua presença neste dia será uma bênção.
+          </p>
+
+          <p>
+            Queremos celebrar não apenas o nosso amor, mas também a fidelidade
+            de Deus em nossas vidas.
           </p>
 
           <p>
@@ -210,8 +233,8 @@ function Home() {
             momento especial e viva conosco toda a emoção dessa jornada.
           </p>
 
-          <p>Com amor,</p>
-          <b>Polyana & Carlos Eduardo</b>
+          <p>Com todo carinho,</p>
+          <b>Polyana & Carlos Eduardo 💍✨</b>
         </Message>
 
         <Title $isMobile={windowWidth <= 490}>
@@ -340,6 +363,30 @@ function Home() {
             ></iframe>
           </Card>
         </CardContainer>
+
+        <Title $isMobile={windowWidth <= 490}>
+          <h2>Presentear</h2>
+        </Title>
+
+        <Message $isMobile={windowWidth <= 490} $center>
+          <b>O melhor presente é ter você conosco nesse dia tão especial 💍</b>
+          <p>
+            Se quiser nos dar uma força nesse novo capítulo, aceitamos aquele
+            Pix cheio de amor ❤️
+          </p>
+          <QRCode src="/images/qr-code.jpg" alt="QR Code PIX" size={400} />
+          <p>Assim vocês nos ajudam a construir juntos nossos sonhos! 🏡💍</p>
+
+          <p>
+            Você também pode acessar nossa lista de presentes clicando abaixo
+          </p>
+          <GiftListButton
+            onClick={() => openGiftListSite()}
+            $isMobile={windowWidth <= 490}
+          >
+            Lista de Presentes
+          </GiftListButton>
+        </Message>
       </Container>
 
       <Footer />
@@ -352,7 +399,11 @@ function Home() {
       >
         <ConfirmationForm onSubmit={handleConfirmationSubmit}>
           {feedbackMessage && (
-            <Feedback type={feedbackType} message={feedbackMessage} />
+            <Feedback
+              type={feedbackType}
+              message={feedbackMessage}
+              isMobile={windowWidth <= 490}
+            />
           )}
           <ConfirmationFormContainer>
             <ConfirmationFormInputContainer $isMobile={windowWidth <= 490}>
