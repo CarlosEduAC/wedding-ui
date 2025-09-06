@@ -150,9 +150,9 @@ export const GiftListButton = styled.button<{ $isMobile?: boolean }>`
   align-items: center;
   justify-content: center;
 
-  margin: ${({ $isMobile }) => ($isMobile ? "16px 0 0 0" : "16px 0 0 0")};
+  margin: ${({ $isMobile }) => ($isMobile ? "12px 0 0 0" : "16px 0 0 0")};
   padding: ${({ $isMobile }) =>
-    $isMobile ? "16px 32px 16px 32px" : "24px 88px 24px 88px"};
+    $isMobile ? "16px 32px 16px 32px" : "24px 120px 24px 120px"};
   cursor: pointer;
   background-color: ${({ theme }) => theme["primary-700"]};
   border: none;
@@ -168,7 +168,7 @@ export const GiftListButton = styled.button<{ $isMobile?: boolean }>`
 export const Message = styled.div<{ $isMobile?: boolean, $center?: boolean }>`
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: ${({ $isMobile }) => ($isMobile ? "100%" : "60%")};
   margin: 0 0 0 0;
   padding: 32px;
 

@@ -32,11 +32,9 @@ export const Input = styled.input`
 
 export const TagContainer = styled.div`
   display: flex;
-  flex-direction: column;
   border-radius: 8px;
   padding: 12px;
   margin: 0 0 8px 0;
-  /* background-color: ${({ theme }) => theme["neutral-300"]}; */
   color: ${({ theme }) => theme["primary-900"]};
 `;
 
@@ -52,7 +50,7 @@ export const Tag = styled.div`
   span {
     font-family: "Parisienne", cursive;
     font-size: 16px;
-    /* max-width: 100%; */
+    margin: 0 8px 0 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

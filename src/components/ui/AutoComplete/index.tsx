@@ -41,6 +41,7 @@ const AutoComplete: React.FC<AutocompleteProps> = ({
       setSelected(newSelected);
       onChange(newSelectedObjects);
       setInputValue("");
+      setIsDropdownOpen(false);
     }
   };
 
@@ -83,8 +84,8 @@ const AutoComplete: React.FC<AutocompleteProps> = ({
         <Input
           id={id}
           type="text"
-          placeholder={selected.length > 0 ? "" : placeholder}
-          value={inputValue}
+          placeholder={placeholder}
+          // value={inputValue}
           onFocus={() => setIsDropdownOpen(true)}
           onChange={(e) => setInputValue(e.target.value)}
         />

@@ -374,7 +374,13 @@ function Home() {
             Se quiser nos dar uma força nesse novo capítulo, aceitamos aquele
             Pix cheio de amor ❤️
           </p>
-          <QRCode src="/images/qr-code.jpg" alt="QR Code PIX" size={400} />
+
+          <QRCode
+            src="/images/qr-code.jpg"
+            alt="QR Code PIX"
+            size={windowWidth <= 490 ? 200 : 400}
+          />
+
           <p>Assim vocês nos ajudam a construir juntos nossos sonhos! 🏡💍</p>
 
           <p>
